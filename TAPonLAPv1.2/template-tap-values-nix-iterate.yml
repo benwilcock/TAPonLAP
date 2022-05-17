@@ -9,7 +9,7 @@ buildservice:
   tanzunet_password: "$INSTALL_REGISTRY_PASSWORD"
   enable_automatic_dependency_updates: true
 
-supply_chain: basic
+supply_chain: $SUPPLY_CHAIN_TYPE
 
 ootb_supply_chain_basic:
   registry:
@@ -27,6 +27,6 @@ contour:
       type: LoadBalancer
 
 cnrs:
-  domain_name: "$APPS_DOMAIN"
+  domain_name: "$APPS_DOMAIN_PREFIX.$DOMAIN"
 
 
