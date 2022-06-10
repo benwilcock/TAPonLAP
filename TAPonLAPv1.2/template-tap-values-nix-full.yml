@@ -1,4 +1,4 @@
-profile: full
+profile: $TAP_PROFILE
 ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
 buildservice:
@@ -14,18 +14,22 @@ supply_chain: $SUPPLY_CHAIN_TYPE
 
 ootb_supply_chain_basic:
   registry:
-    server: "index.docker.io"
+    server: "$BUILD_REGISTRY_HOSTNAME"
     repository: "$DOCKER_USERNAME"
   gitops:
     ssh_secret: ""
 
 metadata_store:
-  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+  app_service_type: NodePort # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 
 contour:
   envoy:
+    logLevel: debug
     service:
-      type: LoadBalancer
+      type: NodePort
+      nodePorts:
+        http: $INGRESS_PORT
+        https: $SECURED_INGRESS_PORT
 
 cnrs:
   domain_name: "$APPS_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN"
