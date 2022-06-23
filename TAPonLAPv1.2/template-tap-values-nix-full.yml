@@ -40,19 +40,20 @@ tap_gui:
   ingressDomain: "$MINIKUBE_IP.$DOMAIN"
   app_config:
     app:
-      baseUrl: http://tap-gui.$MINIKUBE_IP.$DOMAIN
+      baseUrl: http://tap-gui.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
     catalog:
       locations:
         - type: url
           target: https://github.com/benwilcock/tap-gui-blank-catalog/blob/main/catalog-info.yaml
     backend:
-      baseUrl: http://tap-gui.$MINIKUBE_IP.$DOMAIN
+      baseUrl: http://tap-gui.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
       cors:
-        origin: http://tap-gui.$MINIKUBE_IP.$DOMAIN
+        origin: http://tap-gui.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
 
 grype:
   namespace: default
   targetImagePullSecret: registry-credentials
 
 learningcenter:
-  ingressDomain: "$LEARNING_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN"
+  ingressDomain: $LEARNING_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
+
