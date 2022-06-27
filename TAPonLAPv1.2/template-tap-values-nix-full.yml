@@ -55,5 +55,5 @@ grype:
   targetImagePullSecret: registry-credentials
 
 learningcenter:
-  ingressDomain: $LEARNING_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
+  ingressDomain: $LEARNING_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN # Only works with LB schemes.
 
