@@ -1,4 +1,8 @@
 profile: $TAP_PROFILE
+
+# shared:
+#   ingress_domain: $MINIKUBE_IP.$DOMAIN # New - breaks LiveView ?
+
 ceip_policy_disclosed: true # Installation fails if this is set to 'false'
 
 buildservice:
@@ -20,6 +24,7 @@ ootb_supply_chain_basic:
     ssh_secret: ""
 
 metadata_store:
+  ns_for_export_app_cert: "$TAP_DEV_NAMESPACE" # New
   app_service_type: NodePort # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 
 contour:
@@ -51,7 +56,7 @@ tap_gui:
         origin: http://tap-gui.$MINIKUBE_IP.$DOMAIN:$INGRESS_PORT
 
 grype:
-  namespace: default
+  namespace: $TAP_DEV_NAMESPACE
   targetImagePullSecret: registry-credentials
 
 learningcenter:
