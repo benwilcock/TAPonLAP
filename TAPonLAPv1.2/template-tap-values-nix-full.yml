@@ -59,6 +59,10 @@ grype:
   namespace: $TAP_DEV_NAMESPACE
   targetImagePullSecret: registry-credentials
 
+scanning:
+  metadataStore:
+    url: "" # Bypass reconcile issue: unable to set up connection to Supply Chain Security Tools - Store
+
 learningcenter:
   ingressDomain: $LEARNING_DOMAIN_PREFIX.$MINIKUBE_IP.$DOMAIN # Only works with LB schemes.
 
